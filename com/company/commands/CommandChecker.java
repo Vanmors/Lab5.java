@@ -1,6 +1,7 @@
 package com.company.commands;
 
 import com.company.Stack.Parse;
+import com.company.data.Flat;
 import com.company.data.House;
 import com.company.exception.UnknownCommandException;
 
@@ -8,42 +9,46 @@ import java.io.IOException;
 import java.util.Scanner;
 import java.util.Stack;
 
-public class CommandChecker  {
-    Scanner sc = new Scanner(System.in);
+public class CommandChecker {
+
+
     public void exit() throws UnknownCommandException, IOException {
-        Parse p =  new Parse();
-        Stack<House> st = new Stack<>();
+        Parse p = new Parse();
+        Stack<Flat> st = new Stack<>();
         p.parse("notes.txt", st);
+        Scanner sc = new Scanner(System.in);
         while (true) {
-            String command = sc.nextLine();
-                if (command.equals("exit")){
+            try {
+                String command = sc.nextLine();
+                if (command.equals("exit")) {
                     System.exit(0);
-                }
-                else if(command.equals("help")){
+                } else if (command.equals("help")) {
                     HelpCommand.help();
-                }
-                else if(command.equals("show")){
+                } else if (command.equals("show")) {
                     ShowCommand.showString(st);
                 }
-                else if(command.equals("add")){
-                    AddCommand.add(st);
-                }
-                else if(command.equals("remove_by_id")){
+//                else if (command.equals("add")) {
+//                    AddCommand.add(st);
+//                }
+                else if (command.equals("remove_by_id")) {
                     RemoveByIdCommand.removeById(st);
-                }
-                else if(command.equals("clear")){
+                } else if (command.equals("clear")) {
                     ClearCommand.clear(st);
-                }
-                else if(command.equals("average_of_number_of_rooms")){
+                } else if (command.equals("average_of_number_of_rooms")) {
                     AverageOfNumberOfRooms.average(st);
-                }
-                else if(command.equals("reorder")){
+                } else if (command.equals("reorder")) {
                     Reorder.reorder(st);
-                }
-                else{
+                } else if (command.equals("execute_script file_name")) {
+                    ExecuteScriptFileNameCommand.executeScript();
+                } else if(command.equals("max_by_furniture")){
+                    MaxByFurniture.maxFurniture(st);
+                } else{
                     throw new UnknownCommandException(command);
-                    //command = sc.nextLine();
                 }
+            } catch (UnknownCommandException e) {
+                e.getMessage();
+            }
         }
     }
 }
+

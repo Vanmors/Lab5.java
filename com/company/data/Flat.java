@@ -66,6 +66,13 @@ public class Flat {
         return house;
     }
 
-
+    @Override
+    public String toString() {
+        String result = String.format("Id: %d\nName: %s\nCoordinates: {x: %d, y: %d}\nCreation Time: %s\nArea: %d\nNumberOfRooms: %d\nFurniture: %b\nTimeToMetroOnFoot: %d\nView: %s\nName: %s\nYear: %d\nNumberOfFlatsOnFloor: %d\n",
+                getId(), getName(), getCoordinates().getX(), getCoordinates().getY(), getCreationDate(), getArea(), getNumberOfRooms(), getFurniture(), getTimeToMetroOnFoot(),getView(), getHouse().getName(), getHouse().getYear(), getHouse().getNumberOfFlatsOnFloor());
+//        if(getPostalAddress() == null) result += "Address: null";
+//        else result += String.format("Address: {Street: %s, ZipCode: %s}", getPostalAddress().getStreet(), getPostalAddress().getZipCode());
+        return result;
+    }
 }
 

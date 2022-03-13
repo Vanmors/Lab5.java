@@ -68,11 +68,27 @@ public class Flat {
 
     @Override
     public String toString() {
-        String result = String.format("Id: %d\nName: %s\nCoordinates: {x: %d, y: %d}\nCreation Time: %s\nArea: %d\nNumberOfRooms: %d\nFurniture: %b\nTimeToMetroOnFoot: %d\nView: %s\nName: %s\nYear: %d\nNumberOfFlatsOnFloor: %d\n",
-                getId(), getName(), getCoordinates().getX(), getCoordinates().getY(), getCreationDate(), getArea(), getNumberOfRooms(), getFurniture(), getTimeToMetroOnFoot(),getView(), getHouse().getName(), getHouse().getYear(), getHouse().getNumberOfFlatsOnFloor());
+        String result = String.format("Id: %d\nName: %s\nCoordinates: {x: %d, y: %d}\n" +
+                        "Creation Time: %s\nArea: %d\nNumberOfRooms: %d\n" +
+                        "Furniture: %b\nTimeToMetroOnFoot: %d\nView: %s\n" +
+                        "Name: %s\nYear: %d\nNumberOfFlatsOnFloor: %d\n",
+                getId(), getName(), getCoordinates().getX(),
+                getCoordinates().getY(), getCreationDate(), getArea(),
+                getNumberOfRooms(), getFurniture(), getTimeToMetroOnFoot(),
+                getView(), getHouse().getName(),
+                getHouse().getYear(), getHouse().getNumberOfFlatsOnFloor());
 //        if(getPostalAddress() == null) result += "Address: null";
 //        else result += String.format("Address: {Street: %s, ZipCode: %s}", getPostalAddress().getStreet(), getPostalAddress().getZipCode());
         return result;
+    }
+    public String[] toStringForSave(){
+        String[] array = {String.valueOf(getId()), getName(), String.valueOf(getCoordinates().getX()),
+                String.valueOf(getCoordinates().getY()), String.valueOf(getCreationDate()),
+                String.valueOf(getArea()), String.valueOf(getNumberOfRooms()),
+                String.valueOf(getFurniture()), String.valueOf(getTimeToMetroOnFoot()),
+                String.valueOf(getView()), getHouse().getName(), String.valueOf(getHouse().getYear()),
+                String.valueOf(getHouse().getNumberOfFlatsOnFloor())};
+        return array;
     }
 }
 

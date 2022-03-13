@@ -1,8 +1,6 @@
 package com.company.commands;
 
 import com.company.data.Flat;
-import com.company.data.House;
-import com.company.exception.UnknownCommandException;
 
 import java.util.Scanner;
 import java.util.Stack;

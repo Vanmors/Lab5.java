@@ -12,7 +12,6 @@ import java.time.ZonedDateTime;
 
 public class Parse {
     String FileName;
-    //public Stack<House> st = new Stack<>();
     public void parse(String FileName, Stack<Flat> st) throws IOException {
         this.FileName = FileName;
         FileInputStream f = new FileInputStream(FileName);

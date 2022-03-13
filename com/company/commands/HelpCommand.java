@@ -1,10 +1,5 @@
 package com.company.commands;
 
-import com.company.exception.UnknownCommandException;
-
-import java.util.Objects;
-import java.util.Scanner;
-
 public class HelpCommand {
     static public void help()  {
             System.out.println("help : вывести справку по доступным командам" +

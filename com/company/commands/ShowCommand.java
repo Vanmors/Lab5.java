@@ -1,10 +1,6 @@
 package com.company.commands;
 
-import com.company.Stack.Parse;
 import com.company.data.Flat;
-import com.company.data.House;
-
-import java.io.Console;
 import java.util.ArrayList;
 import java.util.Stack;
 

@@ -39,7 +39,7 @@ public class CommandChecker {
                         AverageOfNumberOfRooms.average(st);
                     } else if (command.equals("reorder")) {
                         ReorderCommand.reorder(st);
-                    } else if (command.equals("execute_script file_name")) {
+                    } else if (command.equals("execute_script")) {
                         ExecuteScriptFileNameCommand.executeScript();
                     } else if(command.equals("max_by_furniture")){
                         MaxByFurnitureCommand.maxFurniture(st);

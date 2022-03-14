@@ -6,8 +6,6 @@ import com.company.exception.UnknownCommandException;
 import java.io.*;
 
 public class Main {
-    private static int charCode;
-
     public static void main(String[] args) throws IOException, UnknownCommandException {
         CommandChecker com = new CommandChecker();
             com.exit();

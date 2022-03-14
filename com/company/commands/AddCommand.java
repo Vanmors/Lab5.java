@@ -6,85 +6,162 @@ import com.company.data.House;
 import com.company.data.View;
 
 import java.time.ZonedDateTime;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 import java.util.Stack;
 
 public class AddCommand {
     static Scanner sc = new Scanner(System.in);
     static void add(Stack<Flat> st){
-        Flat f = new Flat(setId(), setName(), setCoordinates(), setCreationDate(),
+        Flat f = new Flat(st.peek().getId()+1, setName(), setCoordinates(), setCreationDate(),
                 setArea(), setNumberOfRooms(), setFurniture(), setTimeToMetroOnFoot(),
                 setView(), setHouse());
         st.push(f);
         System.out.println("Объект добавлен в коллекцию");
     }
-    static public int setId(){
-        System.out.println("id");
-        int id = 3;
-        return id;
-    }
+
     static public String setName(){
+        Scanner nameSc = new Scanner(System.in);
         System.out.println("Введите Name");
-        String Name = sc.nextLine();
+        String Name = nameSc.nextLine();
+        while (Name.equals("")){
+            System.out.println("Введите Name");
+            Name = nameSc.nextLine();
+        }
         return Name;
     }
     static public Coordinates setCoordinates() {
-        System.out.println("Введите Coordinate X");
-        int x = sc.nextInt();
-        System.out.println("Введите Coordinate Y");
-        long y = sc.nextLong();
-        Coordinates cor = new Coordinates(x,y);
-        return cor;
+        while(true) {
+            try {
+                Scanner coordSc = new Scanner(System.in);
+                System.out.println("Введите Coordinate X");
+                int x = coordSc.nextInt();
+                System.out.println("Введите Coordinate Y");
+                long y = coordSc.nextLong();
+                if (x>=0 && y>=0) {
+                    return new Coordinates(x, y);
+                }
+                else{
+                    System.out.println("Некорректно введённые данные");
+                }
+            }
+            catch (InputMismatchException e){
+                System.out.println("Некорректно введённые данные");
+            }
+        }
     }
    static public ZonedDateTime setCreationDate(){
         return ZonedDateTime.now();
     }
     static public int setArea(){
-        System.out.println("Введите area");
-        int area = sc.nextInt();
-        return area;
+        while (true) {
+            try {
+                Scanner areaSc = new Scanner(System.in);
+                System.out.println("Введите area");
+                int area = areaSc.nextInt();
+                if (area>=0) {
+                    return area;
+                }
+                else{
+                    System.out.println("Некорректно введённые данные");
+                }
+            }
+            catch (InputMismatchException e){
+                System.out.println("Некорректно введённые данные");
+            }
+        }
     }
     static public Long setNumberOfRooms(){
-        System.out.println("Введите number of rooms");
-        Long numberOfRooms = sc.nextLong();
-        return numberOfRooms;
+        while(true) {
+            try {
+                Scanner NORsc = new Scanner(System.in);
+                System.out.println("Введите number of rooms");
+                Long numberOfRooms = NORsc.nextLong();
+                if (numberOfRooms>=0) {
+                    return numberOfRooms;
+                }
+                else{
+                    System.out.println("Некорректно введённые данные");
+                }
+            }
+            catch (InputMismatchException e){
+                System.out.println("Некорректно введённые данные");
+            }
+        }
     }
     static public Boolean setFurniture(){
-        System.out.println("Введите furniture");
-        Boolean furniture = sc.nextBoolean();
-        return furniture;
+        while(true) {
+            try {
+                Scanner furSc = new Scanner(System.in);
+                System.out.println("Введите furniture");
+                Boolean furniture = furSc.nextBoolean();
+                return furniture;
+            }
+            catch (InputMismatchException e){
+                System.out.println("Некорректно введённые данные");
+            }
+        }
     }
     static public Long setTimeToMetroOnFoot(){
-        System.out.println("Введите time to metro on foot");
-        Long timeToMetroOnFoot = sc.nextLong();
-        return timeToMetroOnFoot;
+        while(true) {
+            try {
+                Scanner metroSc = new Scanner(System.in);
+                System.out.println("Введите time to metro on foot");
+                Long timeToMetroOnFoot = metroSc.nextLong();
+                if (timeToMetroOnFoot>=0) {
+                    return timeToMetroOnFoot;
+                }
+                else {
+                    System.out.println("Некорректно введённые данные");
+                }
+            }
+            catch (InputMismatchException e){
+                System.out.println("Некорректно введённые данные");
+            }
+        }
     }
     static public View setView() {
-        System.out.println("Введите view: TERRIBLE, STREET, BAD, PARK");
-        String view = sc.next();
         View v = null;
-        if (view == "TERRIBLE"){
-            v = View.TERRIBLE;
-        }
-        else if (view == "STREET"){
-            v = View.STREET;
-        }
-        else if (view == "BAD"){
-            v = View.BAD;
-        }
-        else if (view == "PARK"){
-            v = View.PARK;
+        while (true) {
+            System.out.println("Введите view: TERRIBLE, STREET, BAD, PARK");
+            Scanner viewSc = new Scanner(System.in);
+            String view = viewSc.next();
+            if (view.equals("TERRIBLE")) {
+                v = View.TERRIBLE;
+                break;
+            } else if (view.equals("STREET")) {
+                v = View.STREET;
+                break;
+            } else if (view.equals("BAD")) {
+                v = View.BAD;
+                break;
+            } else if (view.equals("PARK")) {
+                v = View.PARK;
+                break;
+            }
         }
         return v;
     }
     static public House setHouse(){
-        System.out.println("Введите name of house");
-        String Name = sc.nextLine();
-        System.out.println("Введите year of house");
-        Integer year = sc.nextInt();
-        System.out.println("Введите number of flats on floor");
-        Integer numberOfFlatsOnFloor = sc.nextInt();
-        House house = new House(Name,year,numberOfFlatsOnFloor);
-        return house;
+        while (true) {
+            try {
+                Scanner houseSc = new Scanner(System.in);
+                System.out.println("Введите name of house");
+                String Name = houseSc.nextLine();
+                System.out.println("Введите year of house");
+                Integer year = houseSc.nextInt();
+                System.out.println("Введите number of flats on floor");
+                Integer numberOfFlatsOnFloor = houseSc.nextInt();
+                if (year>=0 && numberOfFlatsOnFloor>=0) {
+                    return new House(Name, year, numberOfFlatsOnFloor);
+                }
+                else{
+                    System.out.println("Некорректно введённые данные");
+                }
+            }
+            catch (InputMismatchException e){
+                System.out.println("Некорректно введённые данные");
+            }
+        }
     }
 }

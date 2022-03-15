@@ -6,6 +6,7 @@ import com.company.data.House;
 import com.company.data.View;
 
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Stack;
 import java.time.ZonedDateTime;
@@ -14,15 +15,26 @@ public class Parse {
     String FileName;
     public void parse(String FileName, Stack<Flat> st) throws IOException {
         this.FileName = FileName;
-        FileInputStream f = new FileInputStream(FileName);
+        FileInputStream f;
+        while (true) {
+            try {
+                f = new FileInputStream(FileName);
+                break;
+            } catch (FileNotFoundException e) {
+                System.out.println("Файл не найден или у вас нет на него прав");
+                System.exit(0);
+            }
+        }
         int c;
         int i = 0;
         while (f.available() != 0) {
             i += 1;
-            String word = String.valueOf(i) + ",";
+//            String word = String.valueOf(i) + ",";
+            String word = "";
             while ((c = f.read()) != 13 && c != -1) {
 
                 word = word + (char) c;
+                word = word.trim();
 
             }
             String[] words = word.split(",");

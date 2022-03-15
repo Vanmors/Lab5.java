@@ -10,10 +10,10 @@ import java.util.Scanner;
 import java.util.Stack;
 
 public class CommandChecker {
-    public void exit() throws UnknownCommandException, IOException {
+    public void exit(String f) throws UnknownCommandException, IOException {
         Parse p = new Parse();
         Stack<Flat> st = new Stack<>();
-        p.parse("notes.txt", st);
+        p.parse(f, st);
         Scanner sc = new Scanner(System.in);
         while (true) {
             try {
@@ -21,7 +21,8 @@ public class CommandChecker {
                     System.exit(0);
                 }
                 String command = sc.nextLine();
-                    if ((command.equals("exit"))) {
+                String n [] = command.split(" ");
+                if ((command.equals("exit"))) {
                         System.exit(0);
                     } else if (command.equals("help")) {
                         HelpCommand.help();
@@ -39,8 +40,8 @@ public class CommandChecker {
                         AverageOfNumberOfRooms.average(st);
                     } else if (command.equals("reorder")) {
                         ReorderCommand.reorder(st);
-                    } else if (command.equals("execute_script")) {
-                        ExecuteScriptFileNameCommand.executeScript();
+                    } else if (n[0].equals("execute_script")){
+                        ExecuteScriptFileNameCommand.executeScript(f, n);
                     } else if(command.equals("max_by_furniture")){
                         MaxByFurnitureCommand.maxFurniture(st);
                     }
@@ -48,7 +49,7 @@ public class CommandChecker {
                         InfoCommand.info(st);
                     }
                     else if(command.equals("save")){
-                        SaveCommand.save(st);
+                        SaveCommand.save(f, st);
                     }
                     else if(command.equals("remove_all_by_house")){
                         RemoveAllByHouseCommand.removeAllByHouse(st);

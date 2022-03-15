@@ -12,16 +12,17 @@ import java.util.Scanner;
 import java.util.Stack;
 
 public class ExecuteScriptFileNameCommand {
-    static public void executeScript() throws IOException {
+    static public void executeScript(String f,String n []) throws IOException {
         Parse p = new Parse();
         Stack<Flat> st = new Stack<>();
-        p.parse("notes.txt", st);
+        p.parse(f, st);
         while (true) {
             try {
                 Scanner sc = new Scanner(System.in);
-                System.out.println("Введите название файла");
-                String n = sc.nextLine();
-                FileReader fr = new FileReader(n);
+                //System.out.println("Введите название файла");
+//                String n = sc.nextLine();
+//                String sp [] = n.split(" ");
+                FileReader fr = new FileReader(n[1]);
                 BufferedReader reader = new BufferedReader(fr);
                 String command = reader.readLine();
                 try {
@@ -47,8 +48,11 @@ public class ExecuteScriptFileNameCommand {
                         } else if (command.equals("info")) {
                             InfoCommand.info(st);
                         } else if (command.equals("save")) {
-                            SaveCommand.save(st);
-                        } else if (command.equals("remove_all_by_house")) {
+                            SaveCommand.save(f, st);
+                        }
+                    else if (command.equals("execute_script")) {
+                            System.out.println("Вызовет рекурсию");
+                        }else if (command.equals("remove_all_by_house")) {
                             RemoveAllByHouseCommand.removeAllByHouse(st);
                         } else if (command.equals("update_id")) {
                             UpdateIdCommand.updateID(st);
@@ -67,8 +71,10 @@ public class ExecuteScriptFileNameCommand {
                 }
             } catch (FileNotFoundException e) {
                 System.out.println("Такого файла не существует");
+                break;
             } catch (IOException e) {
                 e.printStackTrace();
+
             }
         }
     }

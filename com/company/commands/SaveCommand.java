@@ -10,10 +10,10 @@ import java.util.List;
 import java.util.Stack;
 
 public class SaveCommand {
-    static public void save(Stack<Flat> st) throws IOException {
+    static public void save(String f, Stack<Flat> st) throws IOException {
 
         List<String[]> list = creatCsvData(st);
-        try (CSVWriter writer = new CSVWriter(new PrintWriter("monitor.csv"))) {
+        try (CSVWriter writer = new CSVWriter(new PrintWriter(f))) {
                 writer.writeAll(list);
         System.out.println("Коллекция сохранена");
             }

@@ -8,7 +8,13 @@ import java.io.*;
 public class Main {
     public static void main(String[] args) throws IOException, UnknownCommandException {
         CommandChecker com = new CommandChecker();
-            com.exit();
-
+        while(true) {
+            if (args.length == 1) {
+                com.exit(args[0]);
+                break;
+            } else {
+                System.out.println("Введено больше одного файла");
+            }
+        }
     }
 }

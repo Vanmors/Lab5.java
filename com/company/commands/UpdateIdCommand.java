@@ -32,9 +32,15 @@ public class UpdateIdCommand {
     static public String setName(){
         Scanner nameSc = new Scanner(System.in);
         System.out.println("Введите Name");
+        if (!nameSc.hasNextLine()){
+            System.exit(0);
+        }
         String Name = nameSc.nextLine();
-        while (Name.equals("")){
+        while ((Name.trim()).equals("")){
             System.out.println("Введите Name");
+            if (!nameSc.hasNextLine()){
+                System.exit(0);
+            }
             Name = nameSc.nextLine();
         }
         return Name;
@@ -44,8 +50,14 @@ public class UpdateIdCommand {
             try {
                 Scanner coordSc = new Scanner(System.in);
                 System.out.println("Введите Coordinate X");
+                if (!coordSc.hasNextLine()){
+                    System.exit(0);
+                }
                 int x = coordSc.nextInt();
                 System.out.println("Введите Coordinate Y");
+                if (!coordSc.hasNextLine()){
+                    System.exit(0);
+                }
                 long y = coordSc.nextLong();
                 if (x>=0 && y>=0) {
                     return new Coordinates(x, y);
@@ -67,6 +79,9 @@ public class UpdateIdCommand {
             try {
                 Scanner areaSc = new Scanner(System.in);
                 System.out.println("Введите area");
+                if (!areaSc.hasNextLine()){
+                    System.exit(0);
+                }
                 int area = areaSc.nextInt();
                 if (area>=0) {
                     return area;
@@ -85,6 +100,9 @@ public class UpdateIdCommand {
             try {
                 Scanner NORsc = new Scanner(System.in);
                 System.out.println("Введите number of rooms");
+                if (!NORsc.hasNextLine()){
+                    System.exit(0);
+                }
                 Long numberOfRooms = NORsc.nextLong();
                 if (numberOfRooms>=0) {
                     return numberOfRooms;
@@ -103,6 +121,9 @@ public class UpdateIdCommand {
             try {
                 Scanner furSc = new Scanner(System.in);
                 System.out.println("Введите furniture");
+                if (!furSc.hasNextLine()){
+                    System.exit(0);
+                }
                 Boolean furniture = furSc.nextBoolean();
                 return furniture;
             }
@@ -116,6 +137,9 @@ public class UpdateIdCommand {
             try {
                 Scanner metroSc = new Scanner(System.in);
                 System.out.println("Введите time to metro on foot");
+                if (!metroSc.hasNextLine()){
+                    System.exit(0);
+                }
                 Long timeToMetroOnFoot = metroSc.nextLong();
                 if (timeToMetroOnFoot>=0) {
                     return timeToMetroOnFoot;
@@ -134,6 +158,9 @@ public class UpdateIdCommand {
         while (true) {
             System.out.println("Введите view: TERRIBLE, STREET, BAD, PARK");
             Scanner viewSc = new Scanner(System.in);
+            if (!viewSc.hasNextLine()){
+                System.exit(0);
+            }
             String view = viewSc.next();
             if (view.equals("TERRIBLE")) {
                 v = View.TERRIBLE;
@@ -156,10 +183,19 @@ public class UpdateIdCommand {
             try {
                 Scanner houseSc = new Scanner(System.in);
                 System.out.println("Введите name of house");
+                if (!houseSc.hasNextLine()){
+                    System.exit(0);
+                }
                 String Name = houseSc.nextLine();
                 System.out.println("Введите year of house");
+                if (!houseSc.hasNextLine()){
+                    System.exit(0);
+                }
                 Integer year = houseSc.nextInt();
                 System.out.println("Введите number of flats on floor");
+                if (!houseSc.hasNextLine()){
+                    System.exit(0);
+                }
                 Integer numberOfFlatsOnFloor = houseSc.nextInt();
                 if (year>=0 && numberOfFlatsOnFloor>=0) {
                     return new House(Name, year, numberOfFlatsOnFloor);

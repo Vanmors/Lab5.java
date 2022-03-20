@@ -31,16 +31,19 @@ public class Parse {
             i += 1;
 //            String word = String.valueOf(i) + ",";
             String word = "";
-            while ((c = f.read()) != 13 && c != -1) {
-
-                word = word + (char) c;
-                word = word.trim();
+            while ((c = f.read()) != 10 && c != -1) {
+                if (c != 34) {
+                    word = word + (char) c;
+                }
+                //word = word.trim();
 
             }
             String[] words = word.split(",");
             Coordinates inputCoordinate = new Coordinates(Integer.parseInt(words[2]), Long.parseLong(words[3]));
-            House house = new House(words[9], Integer.parseInt(words[10]), Integer.parseInt(words[11]));
-            Flat flat = new Flat(Integer.parseInt(words[0]), words[1], inputCoordinate, ZonedDateTime.now(), Integer.parseInt(words[4]), Long.parseLong(words[5]), Boolean.valueOf(words[6]), Long.parseLong(words[7]), View.valueOf(words[8]), house);
+            House house = new House(words[10], Integer.parseInt(words[11]), Integer.parseInt(words[12]));
+            Flat flat = new Flat(Integer.parseInt(words[0]), words[1], inputCoordinate, ZonedDateTime.now(),
+                    Integer.parseInt(words[5]), Long.parseLong(words[6]), Boolean.valueOf(words[7]),
+                    Long.parseLong(words[8]), View.valueOf(words[9]), house);
             st.push(flat);
         }
 

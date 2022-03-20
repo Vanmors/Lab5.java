@@ -4,10 +4,7 @@ import com.company.Stack.Parse;
 import com.company.data.Flat;
 import com.company.exception.UnknownCommandException;
 
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.util.Scanner;
 import java.util.Stack;
 
@@ -18,15 +15,17 @@ public class ExecuteScriptFileNameCommand {
         p.parse(f, st);
         while (true) {
             try {
-                Scanner sc = new Scanner(System.in);
+                //Scanner sc = new Scanner(System.in);
                 //System.out.println("Введите название файла");
 //                String n = sc.nextLine();
 //                String sp [] = n.split(" ");
-                FileReader fr = new FileReader(n[1]);
-                BufferedReader reader = new BufferedReader(fr);
-                String command = reader.readLine();
+//                FileReader fr = new FileReader(n[1]);
+//                BufferedReader reader = new BufferedReader(fr);
+                File file = new File(n[1]);
+                Scanner sc = new Scanner(file);
+                String command = sc.nextLine();
                 try {
-                    while (command != null) {
+                    while (true) {
                         if ((command.equals("exit"))) {
                             System.exit(0);
                         } else if (command.equals("help")) {
@@ -34,7 +33,7 @@ public class ExecuteScriptFileNameCommand {
                         } else if (command.equals("show")) {
                             ShowCommand.showString(st);
                         } else if (command.equals("add")) {
-                            AddCommand.add(st);
+                            AddScriptCommand.add(st,sc);
                         } else if (command.equals("remove_by_id")) {
                             RemoveByIdCommand.removeById(st);
                         } else if (command.equals("clear")) {
@@ -63,11 +62,16 @@ public class ExecuteScriptFileNameCommand {
                         } else {
                             throw new UnknownCommandException(command);
                         }
-                        command = reader.readLine();
+                        if (sc.hasNextLine()) {
+                            command = sc.nextLine();
+                        } else {
+                            break;
+                        }
                     }
                     break;
                 } catch (UnknownCommandException e) {
                     e.getMessage();
+                    break;
                 }
             } catch (FileNotFoundException e) {
                 System.out.println("Такого файла не существует");

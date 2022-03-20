@@ -13,7 +13,8 @@ public class Main {
                 com.exit(args[0]);
                 break;
             } else {
-                System.out.println("Введено больше одного файла");
+                System.out.println("Введено больше одного файла или не введено вообще");
+                break;
             }
         }
     }

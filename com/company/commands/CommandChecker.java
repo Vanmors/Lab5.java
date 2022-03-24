@@ -41,7 +41,7 @@ public class CommandChecker {
                     } else if (command.equals("reorder")) {
                         ReorderCommand.reorder(st);
                     } else if (n[0].equals("execute_script")){
-                        ExecuteScriptFileNameCommand.executeScript(f, n);
+                        ExecuteScriptFileNameCommand.executeScript(f, n,st);
                     } else if(command.equals("max_by_furniture")){
                         MaxByFurnitureCommand.maxFurniture(st);
                     }

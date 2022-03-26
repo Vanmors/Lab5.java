@@ -9,7 +9,7 @@ public class Main {
     public static void main(String[] args) throws IOException, UnknownCommandException {
         CommandChecker com = new CommandChecker();
         while(true) {
-            if (args.length == 1) {
+            if (args.length == 1 && !args[0].equals("/dev/null") && !args[0].equals("/dev/random") && !args[0].equals("/dev/zero")) {
                 com.exit(args[0]);
                 break;
             } else {

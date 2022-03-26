@@ -9,6 +9,5 @@ public class ClearCommand {
         while(!st.empty()){
             st.pop();
         }
-        System.out.println("Коллекция очистилась");
     }
 }

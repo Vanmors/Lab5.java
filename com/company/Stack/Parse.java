@@ -39,12 +39,27 @@ public class Parse {
 
             }
             String[] words = word.split(",");
-            Coordinates inputCoordinate = new Coordinates(Integer.parseInt(words[2]), Long.parseLong(words[3]));
-            House house = new House(words[10], Integer.parseInt(words[11]), Integer.parseInt(words[12]));
-            Flat flat = new Flat(Integer.parseInt(words[0]), words[1], inputCoordinate, ZonedDateTime.now(),
-                    Integer.parseInt(words[5]), Long.parseLong(words[6]), Boolean.valueOf(words[7]),
-                    Long.parseLong(words[8]), View.valueOf(words[9]), house);
-            st.push(flat);
+            while (true) {
+                try {
+                    try {
+                        Coordinates inputCoordinate = new Coordinates(Integer.parseInt(words[2]), Long.parseLong(words[3]));
+                        House house = new House(words[10], Integer.parseInt(words[11]), Integer.parseInt(words[12]));
+                        Flat flat = new Flat(Integer.parseInt(words[0]), words[1], inputCoordinate, ZonedDateTime.now(),
+                                Integer.parseInt(words[5]), Long.parseLong(words[6]), Boolean.valueOf(words[7]),
+                                Long.parseLong(words[8]), View.valueOf(words[9]), house);
+                        st.push(flat);
+                        break;
+                    }
+                    catch (NumberFormatException e){
+                        System.out.println("Файл введён неверно");
+                        System.exit(0);
+                    }
+                }
+                catch (ArrayIndexOutOfBoundsException e) {
+                    System.out.println("Файл введён неверно");
+                    System.exit(0);
+                }
+            }
         }
 
     }

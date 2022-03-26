@@ -4,12 +4,13 @@ import com.company.Stack.Parse;
 import com.company.data.Flat;
 import com.company.exception.UnknownCommandException;
 
+import javax.xml.crypto.dsig.spec.XSLTTransformParameterSpec;
 import java.io.*;
 import java.util.Scanner;
 import java.util.Stack;
 
-public class ExecuteScriptFileNameCommand {
-    static public void executeScript(String f,String n [],Stack<Flat> st) throws IOException {
+public class ExecuteScriptCommand {
+    static public void executeScript(String f,String scr [],Stack<Flat> st) throws IOException {
 //        Parse p = new Parse();
 //        Stack<Flat> st = new Stack<>();
 //        p.parse(f, st);
@@ -21,11 +22,12 @@ public class ExecuteScriptFileNameCommand {
 //                String sp [] = n.split(" ");
 //                FileReader fr = new FileReader(n[1]);
 //                BufferedReader reader = new BufferedReader(fr);
-                File file = new File(n[1]);
+                File file = new File(scr[1]);
                 Scanner sc = new Scanner(file);
-                String command = sc.nextLine();
                 try {
                     while (true) {
+                        String command = sc.nextLine();
+                        String[] n = command.split(" ");
                         if ((command.equals("exit"))) {
                             System.exit(0);
                         } else if (command.equals("help")) {
@@ -34,10 +36,6 @@ public class ExecuteScriptFileNameCommand {
                             ShowCommand.showString(st);
                         } else if (command.equals("add")) {
                             AddScriptCommand.add(st,sc);
-//                            for (int i=0; i<10; i++){
-//                                if (sc.hasNextLine()) {
-//                                String s = sc.nextLine();}
-//                            }
                         } else if (command.equals("remove_by_id")) {
                             RemoveByIdCommand.removeById(st);
                         } else if (command.equals("clear")) {
@@ -57,12 +55,22 @@ public class ExecuteScriptFileNameCommand {
                             System.out.println("Вызовет рекурсию");
                         }else if (command.equals("remove_all_by_house")) {
                             RemoveAllByHouseCommand.removeAllByHouse(st);
-                        } else if (command.equals("update_id")) {
-                            UpdateIdCommand.updateID(st);
-                        } else if (command.equals("remove_lower")) {
-                            RemoveLowerCommand.removeLower(st);
+                        } else if (n[0].equals("update_id")) {
+                            try {
+                                UpdateIdScriptCommand.updateIdScriptCommand(st, sc, n);
+                            }
+                            catch (ArrayIndexOutOfBoundsException e){
+                                System.out.println("Команда введена неверно");
+                            }
+                        } else if (n[0].equals("remove_lower")) {
+                        try {
+                            RemoveLowerCommand.removeLower(st, n);
+                        }
+                        catch (ArrayIndexOutOfBoundsException e){
+                            System.out.println("Команда введена неверно");
+                        }
                         } else if (command.equals("add_if_min")) {
-                            AddIfMinCommand.addIfMin(st);
+                            AddIfMinScriptCommand.addIfMinScriptCommand(st, sc);
                         } else {
                             throw new UnknownCommandException(command);
                         }
@@ -75,7 +83,7 @@ public class ExecuteScriptFileNameCommand {
                     break;
                 } catch (UnknownCommandException e) {
                     e.getMessage();
-//                    break;
+                    break;
                 }
             } catch (FileNotFoundException e) {
                 System.out.println("Такого файла не существует");

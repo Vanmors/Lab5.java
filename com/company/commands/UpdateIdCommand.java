@@ -13,20 +13,24 @@ import java.util.Stack;
 
 public class UpdateIdCommand {
     static Scanner sc = new Scanner(System.in);
-    static public void updateID(Stack<Flat> st) {
-        System.out.println("Введите id");
-        int id = sc.nextInt();
-        Flat f = new Flat(id, setName(), setCoordinates(), setCreationDate(),
-                setArea(), setNumberOfRooms(), setFurniture(), setTimeToMetroOnFoot(),
-                setView(), setHouse());
-        ArrayList<Flat> list = new ArrayList<>(st);
-        list.set(id-1, f);
-        while (!st.empty()){
-            st.pop();
+    static public void updateID(Stack<Flat> st, String[] n) {
+        try {
+            int id = Integer.parseInt(n[1]);
+            Flat f = new Flat(id, setName(), setCoordinates(), setCreationDate(),
+                    setArea(), setNumberOfRooms(), setFurniture(), setTimeToMetroOnFoot(),
+                    setView(), setHouse());
+            ArrayList<Flat> list = new ArrayList<>(st);
+            list.set(id - 1, f);
+            while (!st.empty()) {
+                st.pop();
+            }
+            for (Flat flat : list) {
+                st.push(flat);
+                System.out.println(flat);
+            }
         }
-        for(Flat flat: list){
-            st.push(flat);
-            System.out.println(flat);
+        catch (IndexOutOfBoundsException e){
+            System.out.println("Элемента с таким id не существует");
         }
     }
     static public String setName(){

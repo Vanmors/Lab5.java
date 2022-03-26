@@ -8,13 +8,11 @@ import java.util.Scanner;
 import java.util.Stack;
 
 public class RemoveLowerCommand {
-    static public void removeLower(Stack<Flat> st) {
+    static public void removeLower(Stack<Flat> st, String[] n) {
         if (!st.empty()) {
             while (true) {
                 try {
-                    Scanner sc = new Scanner(System.in);
-                    System.out.println("Введите число комнат");
-                    int maxNumberOfRooms = sc.nextInt();
+                    int maxNumberOfRooms = Integer.parseInt(n[1]);
                     ArrayList<Flat> copyOfCollection = new ArrayList<>(st);
                     for (Flat flat : copyOfCollection) {
                         if (flat.getNumberOfRooms() < maxNumberOfRooms) {

@@ -14,7 +14,6 @@ public class RemoveByIdCommand {
         long count = 0;
         for (Flat flat : list) {
             count += 1;
-
         }
         while (true) {
             try {

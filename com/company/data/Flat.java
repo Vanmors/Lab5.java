@@ -25,6 +25,10 @@ public class Flat {
         this.view = view;
         this.house = house;
     }
+    public Integer setID(int i){
+        id = i;
+        return null;
+    }
 
     public Integer getId() {
         return id;

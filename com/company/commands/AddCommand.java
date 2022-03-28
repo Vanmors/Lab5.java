@@ -6,6 +6,7 @@ import com.company.data.House;
 import com.company.data.View;
 
 import java.time.ZonedDateTime;
+import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 import java.util.Stack;

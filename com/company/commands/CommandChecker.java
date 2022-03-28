@@ -6,10 +6,15 @@ import com.company.data.Flat;
 import com.company.exception.UnknownCommandException;
 
 import java.io.IOException;
-import java.util.Scanner;
-import java.util.Stack;
+import java.util.*;
+
 
 public class CommandChecker {
+    /**
+     * проверяет введёные пользователем данные и вызывает нужный метод
+     * @param f имя файла с коллекцией
+     * @throws IOException
+     */
     public void exit(String f) throws IOException {
         Parse p = new Parse();
         Stack<Flat> st = new Stack<>();

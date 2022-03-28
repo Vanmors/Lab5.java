@@ -8,6 +8,13 @@ import java.util.Scanner;
 import java.util.Stack;
 
 public class ExecuteScriptCommand {
+    /**
+     * проверяет команды в скрипте и выполняет их
+     * @param f имя скрипта
+     * @param scr передаёт массив из названия команды и заданного числа
+     * @param st объект коллекции Stack
+     * @throws IOException
+     */
     static public void executeScript(String f,String scr [],Stack<Flat> st) throws IOException {
 //        Parse p = new Parse();
 //        Stack<Flat> st = new Stack<>();

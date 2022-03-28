@@ -13,6 +13,12 @@ import java.util.Scanner;
 import java.util.Stack;
 
 public class AddIfMinScriptCommand {
+    /**
+     * считывает комнаду add_if_min со скрипта
+     * @param st объект коллекции Stack
+     * @param file файл со скриптом
+     * @throws IOException
+     */
     static String addIfMinScriptCommand(Stack<Flat> st, Scanner file) throws IOException {
         String name = setName(file);
         Coordinates coordinates = setCoordinates(file);
@@ -51,7 +57,12 @@ public class AddIfMinScriptCommand {
     }
 }
 
-    static public String setName(Scanner file) throws IOException {
+    /**
+     * считывает и возвращает Name
+     * @param file файл со скриптом
+     * @return Name
+     */
+    static public String setName(Scanner file)  {
         String Name = file.nextLine();
         if ((Name.trim()).equals("")){
             return null;
@@ -60,7 +71,12 @@ public class AddIfMinScriptCommand {
             return Name;
         }
     }
-    static public Coordinates setCoordinates(Scanner file) throws IOException {
+    /**
+     * считывает и возвращает Coordinates
+     * @param file файл со скриптом
+     * @return Coordinates
+     */
+    static public Coordinates setCoordinates(Scanner file)  {
         while(true) {
             try {
                 int x = file.nextInt();
@@ -80,6 +96,10 @@ public class AddIfMinScriptCommand {
         }
         return null;
     }
+    /**
+     * возвращает CreationDate
+     * @return CreationDate
+     */
     static public ZonedDateTime setCreationDate(){
         return ZonedDateTime.now();
     }
@@ -102,6 +122,11 @@ public class AddIfMinScriptCommand {
         }
         return -1;
     }
+    /**
+     * считывает и возвращает NumberOfRooms
+     * @param file файл со скриптом
+     * @return NumberOfRooms
+     */
     static public Long setNumberOfRooms(Scanner file){
         while(true) {
             try {
@@ -121,6 +146,11 @@ public class AddIfMinScriptCommand {
         }
         return (long) -1;
     }
+    /**
+     * считывает и возвращает Furniture
+     * @param file файл со скриптом
+     * @return Furniture
+     */
     static public Boolean setFurniture(Scanner file){
         while(true) {
             try {
@@ -134,6 +164,11 @@ public class AddIfMinScriptCommand {
         }
         return null;
     }
+    /**
+     * считывает и возвращает TimeToMetroOnFoot
+     * @param file файл со скриптом
+     * @return TimeToMetroOnFoot
+     */
     static public Long setTimeToMetroOnFoot(Scanner file){
         while(true) {
             try {
@@ -152,6 +187,11 @@ public class AddIfMinScriptCommand {
         }
         return (long) -1;
     }
+    /**
+     * считывает и возвращает View
+     * @param file файл со скриптом
+     * @return View
+     */
     static public View setView(Scanner file) {
         View v = null;
         while (true) {
@@ -180,6 +220,11 @@ public class AddIfMinScriptCommand {
         }
         return v;
     }
+    /**
+     * считывает и возвращает House
+     * @param file файл со скриптом
+     * @return House
+     */
     static public House setHouse(Scanner file){
         while (true) {
             try {

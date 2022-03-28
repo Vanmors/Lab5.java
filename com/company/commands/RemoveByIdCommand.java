@@ -8,7 +8,11 @@ import java.util.Scanner;
 import java.util.Stack;
 
 public class RemoveByIdCommand {
-
+    /**
+     * удаляет элемент из коллекции по его id
+     * @param st объект коллекции Stack
+     * @throws ArrayIndexOutOfBoundsException
+     */
     static public void removeById(Stack<Flat> st) throws ArrayIndexOutOfBoundsException {
         ArrayList<Flat> list = new ArrayList(st);
         long count = 0;

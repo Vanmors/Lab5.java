@@ -9,6 +9,10 @@ import java.util.Scanner;
 import java.util.Stack;
 
 public class RemoveAllByHouseCommand {
+    /**
+     * удаляет из коллекции все элементы, значение поля house которого эквивалентно заданному
+     * @param st объект коллекции Stack
+     */
     static public void removeAllByHouse(Stack<Flat> st) {
         if (!st.empty()) {
             while(true) {

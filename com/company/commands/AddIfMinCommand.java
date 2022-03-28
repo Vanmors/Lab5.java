@@ -14,6 +14,11 @@ import java.util.Stack;
 
 public class AddIfMinCommand {
     static Scanner sc = new Scanner(System.in);
+
+    /**
+     * добавляет элемент в коллекцию если NumberOfRooms меньше, чем у остальных объектов
+     * @param st объект коллекции Stack
+     */
     static public void addIfMin(Stack<Flat> st) {
         Flat f = new Flat(st.peek().getId()+1, setName(), setCoordinates(), setCreationDate(),
                 setArea(), setNumberOfRooms(), setFurniture(), setTimeToMetroOnFoot(),
@@ -29,7 +34,10 @@ public class AddIfMinCommand {
             st.push(f);
         }
     }
-
+    /**
+     * считывает и возвращает Name
+     * @return Name
+     */
     static public String setName(){
         Scanner nameSc = new Scanner(System.in);
         System.out.println("Введите Name");
@@ -46,6 +54,10 @@ public class AddIfMinCommand {
         }
         return Name;
     }
+    /**
+     * считывает и возвращает Coordinates
+     * @return Coordinates
+     */
     static public Coordinates setCoordinates() {
         while(true) {
             try {
@@ -72,6 +84,10 @@ public class AddIfMinCommand {
             }
         }
     }
+    /**
+     * возвращает CreationDate
+     * @return CreationDate
+     */
     static public ZonedDateTime setCreationDate(){
         return ZonedDateTime.now();
     }
@@ -96,6 +112,10 @@ public class AddIfMinCommand {
             }
         }
     }
+    /**
+     * считывает и возвращает NumberOfRooms
+     * @return NumberOfRooms
+     */
     static public Long setNumberOfRooms(){
         while(true) {
             try {
@@ -117,6 +137,10 @@ public class AddIfMinCommand {
             }
         }
     }
+    /**
+     * считывает и возвращает furniture
+     * @return furniture
+     */
     static public Boolean setFurniture(){
         while(true) {
             try {
@@ -133,6 +157,10 @@ public class AddIfMinCommand {
             }
         }
     }
+    /**
+     * считывает и возвращает timeToMetroOnFoot
+     * @return timeToMetroOnFoot
+     */
     static public Long setTimeToMetroOnFoot(){
         while(true) {
             try {
@@ -154,6 +182,10 @@ public class AddIfMinCommand {
             }
         }
     }
+    /**
+     * считывает и возвращает View
+     * @return View
+     */
     static public View setView() {
         View v = null;
         while (true) {
@@ -179,6 +211,10 @@ public class AddIfMinCommand {
         }
         return v;
     }
+    /**
+     * считывает и возвращает House
+     * @return House
+     */
     static public House setHouse(){
         while (true) {
             try {

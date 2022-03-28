@@ -6,6 +6,10 @@ import java.util.ArrayList;
 import java.util.Stack;
 
 public class MaxByFurnitureCommand {
+    /**
+     * выводит любой объект из коллекции, значение поля furniture которого является максимальным
+     * @param st объект коллекции Stack
+     */
     static public void maxFurniture(Stack<Flat> st) {
         if (!st.empty()) {
             ArrayList<Flat> copyOfCollection = new ArrayList<>(st);

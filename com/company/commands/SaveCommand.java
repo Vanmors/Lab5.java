@@ -10,6 +10,12 @@ import java.util.List;
 import java.util.Stack;
 
 public class SaveCommand {
+    /**
+     * сохранить коллекцию в файл
+     * @param f файл в который сохраняется коллекция
+     * @param st объект коллекции Stack
+     * @throws IOException
+     */
     static public void save(String f, Stack<Flat> st) throws IOException {
 
         List<String[]> list = creatCsvData(st);
@@ -19,6 +25,11 @@ public class SaveCommand {
             }
         }
 
+    /**
+     * создаёт список данных из коллекции
+     * @param st объект коллекции Stack
+     * @return list
+     */
     private static List<String[]> creatCsvData(Stack<Flat> st) {
         ArrayList<Flat> copyOfCollection = new ArrayList<>(st);
         List<String[]> list = new ArrayList<>();

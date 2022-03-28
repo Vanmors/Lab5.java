@@ -13,6 +13,13 @@ import java.time.ZonedDateTime;
 
 public class Parse {
     String FileName;
+
+    /**
+     *
+     * @param FileName имя файла с коллекцией
+     * @param st объект коллекции Stack
+     * @throws IOException
+     */
     public void parse(String FileName, Stack<Flat> st) throws IOException {
         this.FileName = FileName;
         FileInputStream f;
@@ -26,16 +33,12 @@ public class Parse {
             }
         }
         int c;
-        int i = 0;
         while (f.available() != 0) {
-            i += 1;
-//            String word = String.valueOf(i) + ",";
             String word = "";
             while ((c = f.read()) != 10 && c != -1) {
                 if (c != 34) {
                     word = word + (char) c;
                 }
-                //word = word.trim();
 
             }
             String[] words = word.split(",");

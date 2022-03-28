@@ -1,6 +1,9 @@
 package com.company.commands;
 
 public class HelpCommand {
+    /**
+     * выводит справку по доступным командам
+     */
     static public void help()  {
             System.out.println("help : вывести справку по доступным командам\n" +
                     "info : вывести в стандартный поток вывода информацию о коллекции (тип, дата инициализации, количество элементов и т.д.)\n" +

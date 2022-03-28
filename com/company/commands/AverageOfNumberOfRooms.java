@@ -6,6 +6,10 @@ import java.util.ArrayList;
 import java.util.Stack;
 
 public class AverageOfNumberOfRooms {
+    /**
+     * выводит среднее значение поля numberOfRooms для всех элементов коллекции
+     * @param st объект коллекции Stack
+     */
     static public void average(Stack<Flat> st) {
         double average = 0;
         int count = 0;

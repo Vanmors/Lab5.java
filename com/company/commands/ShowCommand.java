@@ -5,7 +5,10 @@ import java.util.ArrayList;
 import java.util.Stack;
 
 public class ShowCommand {
-
+    /**
+     * выводит в стандартный поток вывода все элементы коллекции в строковом представлении
+     * @param st объект коллекции Stack
+     */
     static public void showString(Stack<Flat> st) {
         if (!st.empty()){
             ArrayList<Flat> copyOfCollection = new ArrayList<>(st);

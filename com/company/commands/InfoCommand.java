@@ -6,6 +6,10 @@ import java.util.ArrayList;
 import java.util.Stack;
 
 public class InfoCommand {
+    /**
+     * выводит в стандартный поток вывода информацию о коллекции
+     * @param st объект коллекции Stack
+     */
     static public void info(Stack<Flat> st) {
         ArrayList<Flat> list = new ArrayList<>(st);
         java.time.ZonedDateTime initializationDate = null;

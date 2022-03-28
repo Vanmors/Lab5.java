@@ -6,13 +6,15 @@ import com.company.data.House;
 import com.company.data.View;
 
 import java.time.ZonedDateTime;
-import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 import java.util.Stack;
 
 public class AddCommand {
-    static Scanner sc = new Scanner(System.in);
+    /**
+     * добавляет элемент в коллекцию
+     * @param st объект коллекции Stack
+     */
     static void add(Stack<Flat> st){
         Flat f = new Flat(st.peek().getId()+1, setName(), setCoordinates(), setCreationDate(),
                 setArea(), setNumberOfRooms(), setFurniture(), setTimeToMetroOnFoot(),
@@ -21,6 +23,10 @@ public class AddCommand {
         System.out.println("Объект добавлен в коллекцию");
     }
 
+    /**
+     * считывает и возвращает Name
+     * @return Name
+     */
     static public String setName(){
         Scanner nameSc = new Scanner(System.in);
         System.out.println("Введите Name");
@@ -37,6 +43,10 @@ public class AddCommand {
         }
         return Name;
     }
+    /**
+     * считывает и возвращает Coordinates
+     * @return Coordinates
+     */
     static public Coordinates setCoordinates() {
         while(true) {
             try {
@@ -63,6 +73,10 @@ public class AddCommand {
             }
         }
     }
+    /**
+     * возвращает CreationDate
+     * @return CreationDate
+     */
    static public ZonedDateTime setCreationDate(){
         return ZonedDateTime.now();
     }
@@ -87,6 +101,10 @@ public class AddCommand {
             }
         }
     }
+    /**
+     * считывает и возвращает NumberOfRooms
+     * @return NumberOfRooms
+     */
     static public Long setNumberOfRooms(){
         while(true) {
             try {
@@ -108,6 +126,10 @@ public class AddCommand {
             }
         }
     }
+    /**
+     * считывает и возвращает furniture
+     * @return furniture
+     */
     static public Boolean setFurniture(){
         while(true) {
             try {
@@ -124,6 +146,10 @@ public class AddCommand {
             }
         }
     }
+    /**
+     * считывает и возвращает timeToMetroOnFoot
+     * @return timeToMetroOnFoot
+     */
     static public Long setTimeToMetroOnFoot(){
         while(true) {
             try {
@@ -145,6 +171,10 @@ public class AddCommand {
             }
         }
     }
+    /**
+     * считывает и возвращает View
+     * @return View
+     */
     static public View setView() {
         View v = null;
         while (true) {
@@ -170,6 +200,10 @@ public class AddCommand {
         }
         return v;
     }
+    /**
+     * считывает и возвращает House
+     * @return House
+     */
     static public House setHouse(){
         while (true) {
             try {

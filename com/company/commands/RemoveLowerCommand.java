@@ -8,6 +8,11 @@ import java.util.Scanner;
 import java.util.Stack;
 
 public class RemoveLowerCommand {
+    /**
+     * удаляет из коллекции все элементы, меньшие, чем заданный
+     * @param st объект коллекции Stack
+     * @param n передаёт массив из названия команды и заданного числа
+     */
     static public void removeLower(Stack<Flat> st, String[] n) {
         if (!st.empty()) {
             while (true) {

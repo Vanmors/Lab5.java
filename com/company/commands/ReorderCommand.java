@@ -9,6 +9,10 @@ import java.util.ArrayList;
 import java.util.Stack;
 
 public class ReorderCommand {
+    /**
+     * сортирует коллекцию в порядке, обратном нынешнему
+     * @param st объект коллекции Stack
+     */
     static public void reorder(Stack<Flat> st) {
         ArrayList<Flat> list = new ArrayList<>(st);
         ClearCommand.clear(st);

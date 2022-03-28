@@ -13,6 +13,12 @@ import java.util.Stack;
 
 public class UpdateIdCommand {
     static Scanner sc = new Scanner(System.in);
+
+    /**
+     * обновляет значение элемента коллекции, id которого равен заданному
+     * @param st объект коллекции Stack
+     * @param n передаёт массив из названия команды и заданного числа
+     */
     static public void updateID(Stack<Flat> st, String[] n) {
         try {
             int id = Integer.parseInt(n[1]);

@@ -1,6 +1,2 @@
-help
-show
-add
-
-fdg
-show
+execute_script testScript.txt
+execute_script script.txt

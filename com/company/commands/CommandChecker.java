@@ -25,6 +25,7 @@ public class CommandChecker {
                 if (!sc.hasNext()){
                     System.exit(0);
                 }
+                ArrayList<String> list = new ArrayList<>();
                 String command = sc.nextLine();
                 String[] n = command.split(" ");
                 if ((command.equals("exit"))) {
@@ -46,7 +47,7 @@ public class CommandChecker {
                     } else if (command.equals("reorder")) {
                         ReorderCommand.reorder(st);
                     } else if (n[0].equals("execute_script")){
-                        ExecuteScriptCommand.executeScript(f, n,st);
+                        ExecuteScriptCommand.executeScript(f, n,st, list);
                     } else if(command.equals("max_by_furniture")){
                         MaxByFurnitureCommand.maxFurniture(st);
                     }

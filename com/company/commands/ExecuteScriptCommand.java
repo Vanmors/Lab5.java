@@ -3,7 +3,10 @@ package com.company.commands;
 import com.company.data.Flat;
 import com.company.exception.UnknownCommandException;
 
+import javax.management.MBeanRegistration;
 import java.io.*;
+import java.util.ArrayList;
+import java.util.NoSuchElementException;
 import java.util.Scanner;
 import java.util.Stack;
 
@@ -15,22 +18,13 @@ public class ExecuteScriptCommand {
      * @param st объект коллекции Stack
      * @throws IOException
      */
-    static public void executeScript(String f,String scr [],Stack<Flat> st) throws IOException {
-//        Parse p = new Parse();
-//        Stack<Flat> st = new Stack<>();
-//        p.parse(f, st);
-        while (true) {
+    static public void executeScript(String f,String scr [],Stack<Flat> st, ArrayList<String> list) throws IOException {
             try {
-                //Scanner sc = new Scanner(System.in);
-                //System.out.println("Введите название файла");
-//                String n = sc.nextLine();
-//                String sp [] = n.split(" ");
-//                FileReader fr = new FileReader(n[1]);
-//                BufferedReader reader = new BufferedReader(fr);
                 File file = new File(scr[1]);
                 Scanner sc = new Scanner(file);
-                try {
-                    while (true) {
+
+                while (true) {
+                    try {
                         String command = sc.nextLine();
                         String[] n = command.split(" ");
                         if ((command.equals("exit"))) {
@@ -40,7 +34,8 @@ public class ExecuteScriptCommand {
                         } else if (command.equals("show")) {
                             ShowCommand.showString(st);
                         } else if (command.equals("add")) {
-                            AddScriptCommand.add(st,sc);
+                            AddScriptCommand.add(st, sc);
+                            String delete = sc.nextLine();
                         } else if (command.equals("remove_by_id")) {
                             RemoveByIdCommand.removeById(st);
                         } else if (command.equals("clear")) {
@@ -55,47 +50,67 @@ public class ExecuteScriptCommand {
                             InfoCommand.info(st);
                         } else if (command.equals("save")) {
                             SaveCommand.save(f, st);
-                        }
-                    else if (command.equals("execute_script")) {
-                            System.out.println("Вызовет рекурсию");
-                        }else if (command.equals("remove_all_by_house")) {
+                        } else if (command.equals("execute_script " + n[1])) {
+                            list.add(n[1]);
+                            int count = list.size()-1;
+                            int i = 0;
+                            for (String ff: list) {
+                                if (n[1].equals(ff)) {
+                                    i++;
+                                }
+                            }
+                            if (i == 2) {
+                                System.out.println("Вызывает рекурсию");
+                                break;
+                            }
+                            else{
+                                ExecuteScriptCommand.executeScript(list.get(count), n, st,list);
+                            }
+                        } else if (command.equals("remove_all_by_house")) {
                             RemoveAllByHouseCommand.removeAllByHouse(st);
                         } else if (n[0].equals("update_id")) {
                             try {
                                 UpdateIdScriptCommand.updateIdScriptCommand(st, sc, n);
-                            }
-                            catch (ArrayIndexOutOfBoundsException e){
+                                String delete = sc.nextLine();
+                            } catch (ArrayIndexOutOfBoundsException e) {
                                 System.out.println("Команда введена неверно");
                             }
                         } else if (n[0].equals("remove_lower")) {
-                        try {
-                            RemoveLowerCommand.removeLower(st, n);
-                        }
-                        catch (ArrayIndexOutOfBoundsException e){
-                            System.out.println("Команда введена неверно");
-                        }
+                            try {
+                                RemoveLowerCommand.removeLower(st, n);
+                            } catch (ArrayIndexOutOfBoundsException e) {
+                                System.out.println("Команда введена неверно");
+                            }
                         } else if (command.equals("add_if_min")) {
                             AddIfMinScriptCommand.addIfMinScriptCommand(st, sc);
+                            String delete = sc.nextLine();
                         } else {
                             throw new UnknownCommandException(command);
                         }
                         if (sc.hasNextLine()) {
-                            command = sc.nextLine();
+                            //command = sc.nextLine();
                         } else {
                             break;
                         }
+                    } catch (UnknownCommandException e) {
+                        e.getMessage();
+                        break;
+//                        if (sc.hasNextLine()) {
+//
+//                        }
+//                        else{
+//                            break;
+//                        }
                     }
-                    break;
-                } catch (UnknownCommandException e) {
-                    e.getMessage();
-                    break;
+                    catch (NoSuchElementException e){
+
+                    }
                 }
             } catch (FileNotFoundException e) {
-                System.out.println("Такого файла не существует");
-                break;
+                System.out.println("Такого файла не существует или на него нет прав");
+
             } catch (IOException e) {
                 e.printStackTrace();
             }
-        }
     }
 }

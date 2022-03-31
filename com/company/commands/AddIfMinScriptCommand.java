@@ -19,42 +19,50 @@ public class AddIfMinScriptCommand {
      * @param file файл со скриптом
      * @throws IOException
      */
-    static String addIfMinScriptCommand(Stack<Flat> st, Scanner file) throws IOException {
-        String name = setName(file);
-        Coordinates coordinates = setCoordinates(file);
-        int area = setArea(file);
-        long numberOfRooms = setNumberOfRooms(file);
-        Boolean furniture = setFurniture(file);
-        long timeToMetro = setTimeToMetroOnFoot(file);
-        View view = setView(file);
-        House house = setHouse(file);
-            if (name == null ||
-        coordinates == null ||
-        area == -1 ||
-        numberOfRooms == -1 ||
-        furniture == null ||
-        timeToMetro == -1 ||
-        view == null ||
-        house == null) {
-            return "Неверно введён скрипт";
-    }
-         else {
-        Flat f = new Flat(st.peek().getId() + 1, name, coordinates, setCreationDate(),
-                area, numberOfRooms, furniture, timeToMetro,
-                view, house);
-        ArrayList<Flat> list = new ArrayList<>(st);
-        Long minNumberOfRooms = list.get(0).getNumberOfRooms();
-        for (Flat flat: list){
-            if (flat.getNumberOfRooms() < minNumberOfRooms){
-                minNumberOfRooms = flat.getNumberOfRooms();
+    static void addIfMinScriptCommand(Stack<Flat> st, Scanner file) throws IOException {
+        while (true) {
+            try {
+                String name = setName(file);
+                Coordinates coordinates = setCoordinates(file);
+                int area = setArea(file);
+                long numberOfRooms = setNumberOfRooms(file);
+                Boolean furniture = setFurniture(file);
+                long timeToMetro = setTimeToMetroOnFoot(file);
+                View view = setView(file);
+                House house = setHouse(file);
+                if (name == null ||
+                        coordinates == null ||
+                        area == -1 ||
+                        numberOfRooms == -1 ||
+                        furniture == null ||
+                        timeToMetro == -1 ||
+                        view == null ||
+                        house == null) {
+                    System.out.println("Неверно введён скрипт");
+                    break;
+                } else {
+                    Flat f = new Flat(st.peek().getId() + 1, name, coordinates, setCreationDate(),
+                            area, numberOfRooms, furniture, timeToMetro,
+                            view, house);
+                    ArrayList<Flat> list = new ArrayList<>(st);
+                    Long minNumberOfRooms = list.get(0).getNumberOfRooms();
+                    for (Flat flat : list) {
+                        if (flat.getNumberOfRooms() < minNumberOfRooms) {
+                            minNumberOfRooms = flat.getNumberOfRooms();
+                        }
+                    }
+                    if (f.getNumberOfRooms() < minNumberOfRooms) {
+                        st.push(f);
+                        System.out.println("Объект добавлен в коллекцию");
+                    }
+                    break;
+                }
+            }
+            catch (NoSuchElementException e){
+                System.out.println("Неверно введён скрипт");
+                break;
             }
         }
-        if (f.getNumberOfRooms()<minNumberOfRooms) {
-            st.push(f);
-            System.out.println("Объект добавлен в коллекцию");
-        }
-        return null;
-    }
 }
 
     /**
@@ -77,8 +85,6 @@ public class AddIfMinScriptCommand {
      * @return Coordinates
      */
     static public Coordinates setCoordinates(Scanner file)  {
-        while(true) {
-            try {
                 int x = file.nextInt();
                 long y = file.nextLong();
                 if (x>=0 && y>=0) {
@@ -86,14 +92,7 @@ public class AddIfMinScriptCommand {
                 }
                 else{
                     System.out.println("Неверно введён скрипт");
-                    break;
                 }
-            }
-            catch (NoSuchElementException e){
-                System.out.println("Неверно введён скрипт");
-                break;
-            }
-        }
         return null;
     }
     /**
@@ -104,22 +103,13 @@ public class AddIfMinScriptCommand {
         return ZonedDateTime.now();
     }
     static public int setArea(Scanner file){
-        while (true) {
-            try {
                 int area = file.nextInt();
                 if (area>=0) {
                     return area;
                 }
-                else{
+                else {
                     System.out.println("Неверно введён скрипт");
-                    break;
                 }
-            }
-            catch (NoSuchElementException e){
-                System.out.println("Неверно введён скрипт");
-                break;
-            }
-        }
         return -1;
     }
     /**
@@ -128,22 +118,14 @@ public class AddIfMinScriptCommand {
      * @return NumberOfRooms
      */
     static public Long setNumberOfRooms(Scanner file){
-        while(true) {
-            try {
+
                 Long numberOfRooms = file.nextLong();
                 if (numberOfRooms>=0) {
                     return numberOfRooms;
                 }
-                else{
+                else {
                     System.out.println("Неверно введён скрипт");
-                    break;
                 }
-            }
-            catch (NoSuchElementException e){
-                System.out.println("Неверно введён скрипт");
-                break;
-            }
-        }
         return (long) -1;
     }
     /**
@@ -152,17 +134,8 @@ public class AddIfMinScriptCommand {
      * @return Furniture
      */
     static public Boolean setFurniture(Scanner file){
-        while(true) {
-            try {
-                Boolean furniture = file.nextBoolean();
-                return furniture;
-            }
-            catch (NoSuchElementException e){
-                System.out.println("Неверно введён скрипт");
-                break;
-            }
-        }
-        return null;
+        Boolean furniture = file.nextBoolean();
+        return furniture;
     }
     /**
      * считывает и возвращает TimeToMetroOnFoot
@@ -170,8 +143,6 @@ public class AddIfMinScriptCommand {
      * @return TimeToMetroOnFoot
      */
     static public Long setTimeToMetroOnFoot(Scanner file){
-        while(true) {
-            try {
                 Long timeToMetroOnFoot = file.nextLong();
                 if (timeToMetroOnFoot>=0) {
                     return timeToMetroOnFoot;
@@ -179,12 +150,6 @@ public class AddIfMinScriptCommand {
                 else {
                     System.out.println("Неверно введён скрипт");
                 }
-            }
-            catch (NoSuchElementException e){
-                System.out.println("Неверно введён скрипт");
-                break;
-            }
-        }
         return (long) -1;
     }
     /**
@@ -194,31 +159,18 @@ public class AddIfMinScriptCommand {
      */
     static public View setView(Scanner file) {
         View v = null;
-        while (true) {
-            try {
                 String view = file.nextLine();
                 view = file.nextLine();
                 if (view.equals("TERRIBLE")) {
                     v = View.TERRIBLE;
-                    break;
                 } else if (view.equals("STREET")) {
                     v = View.STREET;
-                    break;
                 } else if (view.equals("BAD")) {
                     v = View.BAD;
-                    break;
                 } else if (view.equals("PARK")) {
                     v = View.PARK;
-                    break;
                 }
                 return v;
-            }
-            catch (NoSuchElementException e){
-                System.out.println("Неверно введён скрипт");
-                break;
-            }
-        }
-        return v;
     }
     /**
      * считывает и возвращает House
@@ -226,9 +178,6 @@ public class AddIfMinScriptCommand {
      * @return House
      */
     static public House setHouse(Scanner file){
-        while (true) {
-            try {
-                //Scanner houseSc = new Scanner(System.in);
                 String Name = file.nextLine();
                 Integer year = file.nextInt();
                 Integer numberOfFlatsOnFloor = file.nextInt();
@@ -238,12 +187,6 @@ public class AddIfMinScriptCommand {
                 else{
                     System.out.println("Неверно введён скрипт");
                 }
-            }
-            catch (NoSuchElementException e){
-                System.out.println("Неверно введён скрипт");
-                break;
-            }
-        }
         return null;
     }
 }

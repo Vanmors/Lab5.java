@@ -3,6 +3,7 @@ package com.company.commands;
 import com.company.data.Flat;
 import com.opencsv.CSVWriter;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -17,13 +18,17 @@ public class SaveCommand {
      * @throws IOException
      */
     static public void save(String f, Stack<Flat> st) throws IOException {
-
-        List<String[]> list = creatCsvData(st);
-        try (CSVWriter writer = new CSVWriter(new PrintWriter(f))) {
+        try {
+            List<String[]> list = creatCsvData(st);
+            try (CSVWriter writer = new CSVWriter(new PrintWriter(f))) {
                 writer.writeAll(list);
-        System.out.println("Коллекция сохранена");
+                System.out.println("Коллекция сохранена");
             }
         }
+        catch (FileNotFoundException e){
+            System.out.println("Нет прав на файл");
+        }
+    }
 
     /**
      * создаёт список данных из коллекции

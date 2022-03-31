@@ -13,8 +13,8 @@ public class ShowCommand {
         if (!st.empty()){
             ArrayList<Flat> copyOfCollection = new ArrayList<>(st);
             for(Flat flat:copyOfCollection) {
-            System.out.println(flat.toString() + "\n============");
-        }
+                System.out.println(flat.toString() + "\n============");
+            }
         }
         else{
             System.out.println("Коллекция пустая");

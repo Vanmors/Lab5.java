@@ -2,12 +2,14 @@ update_id 1
 sdgdf
 36
 34
-34
-5
+1
+1
 true
 34
 BAD
 sdfd
 12
 32
+show
+max_by_furniture
 show
